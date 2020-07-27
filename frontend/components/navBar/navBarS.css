@@ -1,0 +1,23 @@
+.divMenu {
+    background-color: brown;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    margin-right: 15px;
+}
+
+li {
+    display: inline-block;
+    text-decoration: none;
+
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    color: white;
+}

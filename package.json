@@ -1,0 +1,30 @@
+{
+  "name": "jwt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "cors": "^2.8.5",
+    "css-loader": "^4.0.0",
+    "express": "^4.17.1",
+    "html-loader": "^1.1.0",
+    "html-plugin": "^0.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.25",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon backend/server/index & npx webpack-dev-server -d"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
