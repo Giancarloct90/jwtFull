@@ -1,12 +1,8 @@
 import './formSignUpS.css';
 import view from "./formSignUpV.html";
 import {
-    Users
+    usersClass
 } from "../../model/User";
-const users = new Users();
-// import {
-//     savedUser
-// } from "../model/User";
 
 export default () => {
 
@@ -37,11 +33,11 @@ const guardarUser = async (txtNombre, txtContrasenia, txtNumerCelular, lblNotify
             txtNumerCelular: txtNumerCelular.value
         }
         try {
-            let user = await users.savedUser(data);
+            let user = await usersClass.savedUser(data);
             console.log(user);
             window.localStorage.setItem('token', user.token);
-            users.savedToken(user.token);
-            console.log(users.getToken());
+            // usersClass.savedToken(user.token);
+            // console.log(usersClass.getToken());
             if (user.ok) {
                 txtNombre.value = '';
                 txtContrasenia.value = '';
@@ -52,7 +48,7 @@ const guardarUser = async (txtNombre, txtContrasenia, txtNumerCelular, lblNotify
             }
         } catch (e) {
             Notify(lblNotify, 'Se produjo un error', 'red');
-            console.log('Error tryin to insert a new user');
+            console.log('Error tryin to insert a new user', e);
         }
     } else {
         lblNotify.style.color = 'red';

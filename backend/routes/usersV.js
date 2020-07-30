@@ -7,7 +7,10 @@ const {
 // TO SAVE A NEW USERS
 router.post('/newUser', userController.signUp);
 
-//
-router.get('/me', userController.signIn);
+// Testing
+// router.get('/me', userController.signIn);
+
+// To Signin
+router.post('/signIn', userController.signIn)
 
 module.exports = router;

@@ -12,12 +12,13 @@ const router = async (route) => {
         case '':
             ui.renderNavBar(pages.navbar());
             ui.renderTitle(pages.title());
+            ui.renderFormSignIn(await pages.signin());
             // ui.renderFormSignIn();
             break;
         case '#/':
             ui.renderNavBar(pages.navbar());
             ui.renderTitle(pages.title());
-            // ui.renderFormSignIn();
+            ui.renderFormSignIn(await pages.signin());
             break;
         case '#/home':
             ui.renderNavBar(pages.navbar());

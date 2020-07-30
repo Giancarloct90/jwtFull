@@ -1,4 +1,4 @@
-export class Users {
+class Users {
     constructor() {
         this.token = '';
     }
@@ -6,7 +6,7 @@ export class Users {
     // To saved a users
     async savedUser(data) {
         try {
-            let postedInfo = await fetch('http://192.10.10.2:3000/users/newUser', {
+            let postedInfo = await fetch('http://192.10.10.7:3000/users/newUser', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -15,6 +15,28 @@ export class Users {
             });
             let postedInfoJson = await postedInfo.json();
             return postedInfoJson;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    // SignIn User
+    async singIn(userName, userPassword) {
+        console.log('yay', userName, userPassword);
+        try {
+            let data = {
+                userName,
+                userPassword
+            }
+            let signInUser = await fetch('http://192.10.10.7:3000/users//signIn', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            let signInUserJson = await signInUser.json();
+            return signInUserJson;
         } catch (e) {
             console.log(e);
         }
@@ -35,4 +57,10 @@ export class Users {
     getToken() {
         return this.token;
     }
+}
+
+const usersClass = new Users()
+
+export {
+    usersClass
 }

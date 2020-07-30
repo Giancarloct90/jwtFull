@@ -1,18 +1,20 @@
 const Users = require('../models/userM');
 const jwt = require('jsonwebtoken');
 
-const signIn = (req, res) => {
+const token = (req, res) => {
     const token = req.headers['x-access-token'];
-    if (!token) {
+    if (token === 'false') {
         res.status(401).json({
             ok: false,
             message: 'No token provided'
         })
     }
-
-    // console.log('hola', req.headers['x-access-token']);
-    // const decodedToken = jwt.verify(token, 'mysecret');
-    // console.log(decodedToken);
+    let decoded = jwt.verify(token, 'mysecret');
+    console.log(decoded);
+    res.status(200).json({
+        ok: true,
+        message: 'recived'
+    })
 }
 
 // TO SAVE A NEW USER
@@ -57,6 +59,14 @@ const signUp = async (req, res) => {
             message: 'Error Trying to insert into db'
         })
     }
+}
+
+// To SignIn a users
+const signIn = async (req, res) => {
+    console.log(req.body)
+    res.json({
+        message: 'recived'
+    })
 }
 
 // Create a var
