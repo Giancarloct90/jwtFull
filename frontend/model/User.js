@@ -6,7 +6,7 @@ class Users {
     // To saved a users
     async savedUser(data) {
         try {
-            let postedInfo = await fetch('http://192.10.10.7:3000/users/newUser', {
+            let postedInfo = await fetch('http://192.168.10.7:3000/users/newUser', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
@@ -22,13 +22,13 @@ class Users {
 
     // SignIn User
     async singIn(userName, userPassword) {
-        console.log('yay', userName, userPassword);
+        // console.log('yay', userName, userPassword);
         try {
             let data = {
                 userName,
                 userPassword
             }
-            let signInUser = await fetch('http://192.10.10.7:3000/users//signIn', {
+            let signInUser = await fetch('http://192.168.10.7:3000/users/signIn', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {

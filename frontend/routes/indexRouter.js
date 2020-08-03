@@ -10,14 +10,9 @@ const router = async (route) => {
     ui.clearAllDivs();
     switch (route) {
         case '':
-            ui.renderNavBar(pages.navbar());
-            ui.renderTitle(pages.title());
             ui.renderFormSignIn(await pages.signin());
-            // ui.renderFormSignIn();
             break;
         case '#/':
-            ui.renderNavBar(pages.navbar());
-            ui.renderTitle(pages.title());
             ui.renderFormSignIn(await pages.signin());
             break;
         case '#/home':

@@ -1,20 +1,20 @@
 const Users = require('../models/userM');
 const jwt = require('jsonwebtoken');
 
-const token = (req, res) => {
-    const token = req.headers['x-access-token'];
-    if (token === 'false') {
-        res.status(401).json({
+
+const home = async (req, res) => {
+    let usersDB = await Users.find();
+    if (!usersDB) {
+        return res.status(500).json({
             ok: false,
-            message: 'No token provided'
-        })
+            message: 'Error Server'
+        });
     }
-    let decoded = jwt.verify(token, 'mysecret');
-    console.log(decoded);
     res.status(200).json({
         ok: true,
-        message: 'recived'
-    })
+        message: 'success',
+        users: usersDB
+    });
 }
 
 // TO SAVE A NEW USER
@@ -63,16 +63,53 @@ const signUp = async (req, res) => {
 
 // To SignIn a users
 const signIn = async (req, res) => {
-    console.log(req.body)
-    res.json({
-        message: 'recived'
-    })
+    let {
+        userName,
+        userPassword
+    } = req.body;
+    try {
+
+        let userDB = await Users.findOne({
+            nombre: userName
+        });
+        if (!userDB) {
+            console.log('el usuario no existe');
+            return res.status(404).json({
+                ok: false,
+                message: 'El nombre de usuario no existe'
+            });
+        }
+        console.log('Conatrasenia:', userDB.contrasenia, userPassword);
+        if (!(userDB.contrasenia === userPassword)) {
+            console.log('password incorrecto ');
+            return res.status(404).json({
+                ok: false,
+                message: 'Password incorrecot'
+            });
+        }
+        const token = jwt.sign({
+            id: userDB._id
+        }, 'mysecret', {
+            expiresIn: 3600
+        });
+        return res.status(200).json({
+            ok: true,
+            message: 'signin correct',
+            token: token
+        })
+    } catch (e) {
+        res.status(500).json({
+            ok: false,
+            message: 'Server Error'
+        });
+    }
 }
 
 // Create a var
 const userController = {
     signIn: signIn,
-    signUp: signUp
+    signUp: signUp,
+    home: home
 }
 
 module.exports = {
